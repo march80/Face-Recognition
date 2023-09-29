@@ -19,7 +19,7 @@ const setupClarifai = (imageUrl) =>{
   const USER_ID = 'dd2lcgswen42';       
   const APP_ID = 'Face-Recognition';
   // Change these to whatever model and image URL you want to use
-  const MODEL_ID = 'face-detection';
+  //const MODEL_ID = 'face-detection';
   const IMAGE_URL = imageUrl;
 
   const raw = JSON.stringify({
