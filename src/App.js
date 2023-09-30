@@ -113,17 +113,19 @@ displayFaceBox = (box) =>{
 
   onButtonSubmit = (MODEL_ID) => {
    this.setState({imageUrl: this.state.input})
-   
+   let res;
    //app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
    fetch("https://api.clarifai.com/v2/models/face-detection/outputs", setupClarifai(this.state.input))
-
-      .then(response => response.json())     
-      .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
-   
-      fetch("https://api.clarifai.com/v2/models/face-detection/outputs", setupClarifai(this.state.input))
-      .then(response => {
-        console.log('hi', response)
-        if (response) {
+      //.then(response =>{console.log(" before json"+response)})
+      .then(response => {res = response})
+      .then(() => res.json())
+      
+      .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))//.catch(err => console.log("there is no image "+err))
+      
+      //fetch("https://api.clarifai.com/v2/models/face-detection/outputs", setupClarifai(this.state.input))
+      .then(() => {
+        console.log('hi', res)
+        if (res.status === 200) {
           fetch('http://localhost:3000/image', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
@@ -142,7 +144,7 @@ displayFaceBox = (box) =>{
         }
         
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log("there is no image "+err))
     }
   
 
