@@ -23,25 +23,59 @@ class Register extends React.Component{
     onPasswordChange = (event) => {
         this.setState({password: event.target.value})
     }
+    // onSubmitSignIn = () => {
+    //     let res;
+    //     fetch('http://localhost:3000/register', {
+    //         method: 'post',
+    //         headers: {'Content-Type': 'application/json'},
+    //         body: JSON.stringify({
+    //             email: this.state.email,
+    //             password: this.state.password,
+    //             name: this.state.name
+    //         })
+    //     })
+    //     .then(response => {res = response})
+    //     .then(() => res.json())
+    //     //.then(response => response.json())
+    //     .then(() =>{
+            
+            
+    //         if(res.status === 400){
+    //             alert("please enter Name, Password and Email")
+    //         } else{
+    //             this.props.loadUser(res);
+    //             this.props.onRouteChange('home')
+    //         }
+    //     })
+    // }
     onSubmitSignIn = () => {
-        fetch('http://localhost:3000/register', {
-            method: 'post',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                email: this.state.email,
-                password: this.password,
-                name: this.name
-            })
+        if(this.state.password.length=== 0 || this.state.name.length === 0 || this.state.email.length === 0){
+            alert("Please enter your email, name & password")
+
+        }else{
+            fetch('http://localhost:3000/register', {
+          method: 'post',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            email: this.state.email,
+            password: this.state.password,
+            name: this.state.name
+          })
         })
-        .then(response => response.json())
-        .then(user => {
-            if(user){
-                this.props.loadUser(user);
-                this.props.onRouteChange('home')
+          .then(response => response.json())
+          .then(user => {
+           
+            
+            if (user) {
+                console.log("test " + user)
+              this.props.loadUser(user)
+              this.props.onRouteChange('home');
             }
-        })
-        
+          })
+      }
     }
+        
+    
 
     render(){
         
@@ -68,7 +102,7 @@ class Register extends React.Component{
                                 onChange={this.onEmailChange}/>
                             </div>
                             <div className="mv3">
-                                <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
+                                <label className="db fw6 lh-copy f6" htmlFor="password" >Password</label>
                                 <input className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
                                 type="password" 
                                 name="password"  
