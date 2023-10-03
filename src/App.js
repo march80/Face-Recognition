@@ -51,32 +51,28 @@ body: raw
 }
 
 
-
+const initialState = {
+  input: '',
+  imageUrl: '',
+  box: {},
+  route: 'signIn',
+  isSignedIn: false,
+  user: {
+        id: '',
+        name: '',
+        email: '',
+        entries: 0,
+        joined: ''
+  }
+}
 class App extends Component {
   constructor() {
     super();
    
-    this.state = {
-      input: '',
-      imageUrl: '',
-      box: {},
-      route: 'signIn',
-      isSignedIn: false,
-      user: {
-            id: '',
-            name: '',
-            email: '',
-            entries: 0,
-            joined: ''
-      }
-    }
+    this.state = initialState;
   }
 
-  // componentDidMount(){
-  //   fetch('http://localhost:3000')
-  //   .then(response => response.json())
-  //   .then(console.log)
-  // }
+  
 loadUser = (data) => {
   this.setState({user: {
     id: data.id,
@@ -138,9 +134,7 @@ displayFaceBox = (box) =>{
               this.setState(Object.assign(this.state.user, { entries: count}))
               
             })
-            // .then(response => response.json())     
-            // .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
-
+            .catch(console.log)
         }
         
       })
@@ -153,7 +147,7 @@ displayFaceBox = (box) =>{
     
   onRouteChange = (route) =>{
     if(route === 'signout'){
-      this.setState({isSignedIn: false})
+      this.setState(initialState)
     }else if(route === 'home'){
       this.setState({isSignedIn: true})
     } 
@@ -165,6 +159,7 @@ displayFaceBox = (box) =>{
   
   render(){
     const {imageUrl, box, isSignedIn, route} = this.state;
+    
   return (
     <div className="App">
       <>
