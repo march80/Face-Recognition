@@ -23,31 +23,7 @@ class Register extends React.Component{
     onPasswordChange = (event) => {
         this.setState({password: event.target.value})
     }
-    // onSubmitSignIn = () => {
-    //     let res;
-    //     fetch('http://localhost:3000/register', {
-    //         method: 'post',
-    //         headers: {'Content-Type': 'application/json'},
-    //         body: JSON.stringify({
-    //             email: this.state.email,
-    //             password: this.state.password,
-    //             name: this.state.name
-    //         })
-    //     })
-    //     .then(response => {res = response})
-    //     .then(() => res.json())
-    //     //.then(response => response.json())
-    //     .then(() =>{
-            
-            
-    //         if(res.status === 400){
-    //             alert("please enter Name, Password and Email")
-    //         } else{
-    //             this.props.loadUser(res);
-    //             this.props.onRouteChange('home')
-    //         }
-    //     })
-    // }
+
     onSubmitSignIn = () => {
         if(this.state.password.length=== 0 || this.state.name.length === 0 || this.state.email.length === 0){
             alert("Please enter your email, name & password")
