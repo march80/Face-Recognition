@@ -25,30 +25,26 @@ class Register extends React.Component{
     }
 
     onSubmitSignIn = () => {
-        if(this.state.password.length=== 0 || this.state.name.length === 0 || this.state.email.length === 0){
-            alert("Please enter your email, name & password")
-
-        }else{
-            fetch(' https://git.heroku.com/mysterious-reaches-21103.git/register', {
-          method: 'post',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({
-            email: this.state.email,
-            password: this.state.password,
-            name: this.state.name
-          })
+       
+            fetch('https://mysterious-reaches-21103-18eae857c035.herokuapp.com/register', {
+                method: 'post',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    email: this.state.email,
+                    password: this.state.password,
+                    name: this.state.name
+                })
         })
           .then(response => response.json())
           .then(user => {
            
             
             if (user.id) {
-                console.log("test " + user)
-              this.props.loadUser(user)
-              this.props.onRouteChange('home');
+                this.props.loadUser(user)
+                this.props.onRouteChange('home');
             }
           })
-      }
+    
     }
         
     
