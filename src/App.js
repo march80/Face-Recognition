@@ -122,7 +122,7 @@ displayFaceBox = (box) =>{
       .then(() => {
         console.log('hi', res)
         if (res.status === 200) {
-          fetch('http://localhost:3000/image', {
+          fetch(' https://git.heroku.com/mysterious-reaches-21103.git/image', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
