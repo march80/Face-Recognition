@@ -122,7 +122,7 @@ displayFaceBox = (box) =>{
       .then(() => {
         console.log('hi', res)
         if (res.status === 200) {
-          fetch('https://mynodeserver1.onrender.com/image', {
+          fetch('https://localhost:3000/image', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
