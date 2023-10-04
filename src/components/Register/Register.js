@@ -29,7 +29,7 @@ class Register extends React.Component{
             alert("Please enter your email, name & password")
 
         }else{
-            fetch('https://mynodeserver1.onrender.com/register', {
+            fetch('http://localhost:3000/register', {
           method: 'post',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
