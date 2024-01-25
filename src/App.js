@@ -122,7 +122,7 @@ displayFaceBox = (box) =>{
       .then(() => {
         console.log('hi', res)
         if (res.status === 200) {
-          fetch('https://mysterious-reaches-21103-18eae857c035.herokuapp.com/image', {
+          fetch('https://immense-lowlands-32491-88cb97ff11c0.herokuapp.com/image', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
